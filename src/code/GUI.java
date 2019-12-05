@@ -94,16 +94,11 @@ public abstract class GUI {
 	public static final int CANVAS_WIDTH = 600;
 	public static final int CANVAS_HEIGHT = 600;
 
-	// --------------------------------------------------------------------
-	// Everything below here is Swing-related and, while it's worth
-	// understanding, you don't need to look any further to finish the
-	// assignment up to and including completion.
-	// --------------------------------------------------------------------
 
 	private JFrame frame;
-	private final JSlider red = new JSlider(JSlider.HORIZONTAL, 0, 255, 128);
-	private final JSlider green = new JSlider(JSlider.HORIZONTAL, 0, 255, 128);
-	private final JSlider blue = new JSlider(JSlider.HORIZONTAL, 0, 255, 128);
+	private final JSlider red = new JSlider(JSlider.HORIZONTAL, 0, 255, 10);
+	private final JSlider green = new JSlider(JSlider.HORIZONTAL, 0, 255, 10);
+	private final JSlider blue = new JSlider(JSlider.HORIZONTAL, 0, 255, 10);
 
 	private final JSlider red2 = new JSlider(JSlider.HORIZONTAL, 0, 255, 255);
 	private final JSlider green2 = new JSlider(JSlider.HORIZONTAL, 0, 255, 255);

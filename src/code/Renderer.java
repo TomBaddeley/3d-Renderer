@@ -13,6 +13,10 @@ import java.util.stream.Collectors;
 
 import code.Scene.Polygon;
 
+/**
+ * Creates the GUI for this program using swing.
+ */
+
 public class Renderer extends GUI {
     private Scene scene;
     private float xRot;
@@ -21,6 +25,11 @@ public class Renderer extends GUI {
     Vector3D secondLight;
     Vector3D thirdLight;
     Vector3D fourthLight;
+
+	/**
+	 * Loads a data file containing the triangle vertices used to renfer the model.
+	 * @param file The data file name.
+	 */
 	@Override
 	protected void onLoad(File file) {
 	    try {
@@ -69,6 +78,11 @@ public class Renderer extends GUI {
 
 	}
 
+	/**
+	 * Hot keys for rotating the model.
+	 * @param ev
+	 */
+
 	@Override
 	protected void onKeyPress(KeyEvent ev) {
 		if(ev.getKeyChar()=='a') yRot += Math.PI/10;
@@ -77,6 +91,8 @@ public class Renderer extends GUI {
 		if(ev.getKeyChar()=='s') xRot += Math.PI/10;
 
 	}
+
+
 
 	@Override
 	protected BufferedImage render() {
@@ -93,15 +109,13 @@ public class Renderer extends GUI {
 
 		List<Polygon> visiblePolys = sceneCopy.getPolygons().stream().filter(p->!Pipeline.isHidden(p)).collect(Collectors.toList());
 
-		HashMap<Vector3D,Vector3D> vertexIntensities = Pipeline.buildVertexNormalMap(visiblePolys,sceneCopy.getLight());
+		HashMap<Vector3D,Vector3D> vertexIntensities = Pipeline.buildVertexNormalMap(visiblePolys);
 
 
 		for(Polygon p:visiblePolys){
 			colors.add(Pipeline.getAmbientShading(p,new Color(getAmbientLight()[0],getAmbientLight()[1],getAmbientLight()[2])));
 			edgeLists.add(Pipeline.computeEdgeList(p,vertexIntensities));
 		}
-
-
 
 
 		Color[][] zbuffer = new Color[CANVAS_HEIGHT+50][CANVAS_WIDTH+50];

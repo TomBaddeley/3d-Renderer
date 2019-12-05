@@ -3,17 +3,15 @@ package code;
 import java.util.HashMap;
 
 /**
- * EdgeList should store the data for the edge list of a single polygon in your
- * scene. A few method stubs have been provided so that it can be tested, but
- * you'll need to fill in all the details.
+ * EdgeList stores the data for the edge list of a single polygon in your
+ * scene. An Edge list stores the coordinates of every pixel in the edge and the
+ * color of every pixel at each edge/
  *
- * You'll probably want to add some setters as well as getters or, for example,
- * an addRow(y, xLeft, xRight, zLeft, zRight) method.
  */
 public class EdgeList {
 	private int startY, endY;
 	private HashMap<Integer,Float> leftX = new HashMap<>(),leftZ = new HashMap<>(),rightX = new HashMap<>(),rightZ = new HashMap<>();
-	private HashMap<Integer,Vector3D> leftXLight = new HashMap<>(), rightXLight = new HashMap<>();
+	private HashMap<Integer,Vector3D> leftXLight = new HashMap<>(), rightXLight = new HashMap<>();//light values stored for color interpolation
 	public EdgeList(int startY, int endY) {
 		this.startY = startY;
 		this.endY = endY;
@@ -70,13 +68,12 @@ public class EdgeList {
 	}
 
 	public String toString() {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 
 		for (int y = startY; y < endY; y++) {
-			result += "Left: " + getLeftX(y) + " Right: " + getRightX(y) + "\n";
+			result.append("Left: ").append(getLeftX(y)).append(" Right: ").append(getRightX(y)).append("\n");
 		}
-		return result;
+		return result.toString();
 	}
 }
 
-// code for comp261 assignments

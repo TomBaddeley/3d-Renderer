@@ -6,12 +6,8 @@ import java.util.stream.Collectors;
 
 
 /**
- * The Pipeline class has method stubs for all the major components of the
- * rendering pipeline, for you to fill in.
- * 
- * Some of these methods can get quite long, in which case you should strongly
- * consider moving them out into their own file. You'll need to update the
- * imports in the test suite if you do.
+ * The Pipeline class has methods for all the major components of the
+ * rendering pipeline.
  */
 public class Pipeline {
 
@@ -43,6 +39,7 @@ public class Pipeline {
 		g = ambientLight.getGreen()* poly.getReflectance().getGreen()/255;
 		b = ambientLight.getBlue()* poly.getReflectance().getBlue()/255;
 
+		//cap rgb values at 255
 		r = Math.min(r,255);
 		g = Math.min(g,255);
 		b = Math.min(b,255);
@@ -51,7 +48,7 @@ public class Pipeline {
 		return new Color(r,g,b);
 	}
 	/**
-	 * This method should rotate the polygons and light such that the viewer is
+	 * This method rotates the polygons and light such that the viewer is
 	 * looking down the Z-axis. The idea is that it returns an entirely new
 	 * Scene object, filled with new Polygons, that have been rotated.
 	 * 
@@ -91,21 +88,20 @@ public class Pipeline {
 	}
 
 	/**
-	 * This should translate the scene by the appropriate amount.
+	 * This translates the scene by the appropriate amount.
 	 * 
 	 * @param scene
 	 * @return
 	 */
 	public static Scene translateScene(Scene scene) {
 
-
+		//find the maximum magnitude of the vectors, this value is used to ensure the model always fits in canvas
 		List<Scene.Polygon> polygons = scene.getPolygons();
 		for(Scene.Polygon p: polygons){
 			for(Vector3D v:p.getVertices()){
 				if(v.mag>maxMag) maxMag = v.mag;
 			}
 		}
-
 
 
 		List<Scene.Polygon> transPolygons= new ArrayList<>();
@@ -119,7 +115,7 @@ public class Pipeline {
 	}
 
 	/**
-	 * This should scale the scene.
+	 * This scales the scene to fit inside the GUI window.
 	 *
 	 * @param scene
 	 * @return
@@ -143,8 +139,7 @@ public class Pipeline {
 	}
 
 	/**
-	 * Computes the edgelist of a single provided polygon, as per the lecture
-	 * slides.
+	 * Computes the edgelist of a single provided polygon.
 	 */
 	public static EdgeList computeEdgeList(Scene.Polygon poly, HashMap<Vector3D,Vector3D> vertexIntesnity) {
 		ArrayList<ArrayList<Vector3D>> edges = new ArrayList<>();
@@ -210,11 +205,7 @@ public class Pipeline {
 	}
 
 	/**
-	 * Fills a zbuffer with the contents of a single edge list according to the
-	 * lecture slides.
-	 * 
-	 * The idea here is to make zbuffer and zdepth arrays in your main loop, and
-	 * pass them into the method to be modified.
+	 *
 	 * 
 	 * @param zbuffer
 	 *            A double array of colours representing the Color at each pixel
@@ -305,10 +296,15 @@ public class Pipeline {
 	}
 
 
+	/**
+	 *
+	 *
+	 * @param polygons
+	 * @return
+	 */
 
-
-	public static HashMap<Vector3D,Vector3D> buildVertexNormalMap(List<Scene.Polygon> polygons, Vector3D lightPos){
-		//build a vertice map that contains all the adjacent polygons of each vertex.
+	public static HashMap<Vector3D,Vector3D> buildVertexNormalMap(List<Scene.Polygon> polygons){
+		//builds a vertice map that contains all the adjacent polygons of each vertex.
 		HashMap<Vector3D,Set<Scene.Polygon>> verticeMap = new HashMap<>();
 		for(Scene.Polygon p: polygons){
 			for(Vector3D v:p.getVertices()){
@@ -336,4 +332,3 @@ public class Pipeline {
 	}
 }
 
-// code for comp261 assignments
