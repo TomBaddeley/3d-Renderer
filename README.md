@@ -9,4 +9,4 @@ TO RUN:
 4. adjust the lighting with the sliders and rotate the object with WASD
 
 
-!(https://gfycat.com/adolescentmarvelousconey.gif)
+![demo](https://gfycat.com/adolescentmarvelousconey.gif)
