@@ -7,3 +7,6 @@ TO RUN:
 2. Once the GUI has opened click load 
 3. select one of the text files found in the data folder
 4. adjust the lighting with the sliders and rotate the object with WASD
+
+
+!(https://gfycat.com/adolescentmarvelousconey.gif)
