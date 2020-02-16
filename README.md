@@ -9,4 +9,4 @@ TO RUN:
 4. adjust the lighting with the sliders and rotate the object with WASD
 
 
-![demo](src/images/demo.gif)
+![demo](src/images/YukyeMYjUy.gif)
